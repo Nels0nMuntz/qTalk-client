@@ -1,8 +1,10 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import './globals.css';
+import './global.css';
 import { fontInter } from '../fonts/inter';
 import { cn } from '@/lib/utils';
+import { Toaster } from "@/components/ui/toaster"
+import Navbar from "@/components/navbar/Navbar";
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -11,18 +13,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  authModal,
 }: {
   children: React.ReactNode;
+  authModal: React.ReactNode;
 }) {
   return (
     <html lang="en" className="light">
       <body
-        className={cn(
-          fontInter.variable,
-          'bg-white to-slate-900 antialiased',
-        )}
+        className={cn(fontInter.variable, 'bg-white to-slate-900 antialiased')}
       >
-        {children}
+        <Navbar/>
+        {authModal}
+        <div className="container max-w-7xl mx-auto h-full pt-12">
+          {children}
+        </div>
+        <Toaster />
       </body>
     </html>
   );
