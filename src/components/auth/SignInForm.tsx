@@ -111,7 +111,7 @@ export default function SignInForm() {
         >
           Forgot Password ?
         </Link>
-        <Button className="w-full text-white bg-rose-400 rounded-lg hover:bg-rose-500 transition-colors" isloading={isSubmitting}>
+        <Button className="w-full text-white bg-rose-400 rounded-lg hover:bg-rose-500 transition-colors" isLoading={isSubmitting}>
           Sign In
         </Button>
       </form>

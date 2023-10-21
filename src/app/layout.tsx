@@ -3,8 +3,9 @@ import type { Metadata } from 'next';
 import './global.css';
 import { fontInter } from '../fonts/inter';
 import { cn } from '@/lib/utils';
-import { Toaster } from "@/components/ui/toaster"
-import Navbar from "@/components/navbar/Navbar";
+import { Toaster } from '@/components/ui/toaster';
+import Navbar from '@/components/navbar/Navbar';
+import Providers from './providers/Providers';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -23,12 +24,14 @@ export default function RootLayout({
       <body
         className={cn(fontInter.variable, 'bg-white to-slate-900 antialiased')}
       >
-        <Navbar/>
-        {authModal}
-        <div className="container max-w-7xl mx-auto h-full pt-12">
-          {children}
-        </div>
-        <Toaster />
+        <Providers>
+          <Navbar />
+          {authModal}
+          <div className="container max-w-7xl mx-auto h-full pt-16">
+            {children}
+          </div>
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );

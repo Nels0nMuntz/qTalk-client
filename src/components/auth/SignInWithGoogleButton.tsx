@@ -32,6 +32,7 @@ export default function SignInWithGoogleButton() {
     <Button
       size="sm"
       className="w-full"
+      isLoading={isLoading}
       onClick={signInWithGoogle}
     >
       {!isLoading && <Icons.google className="w-4 h-4 mr-2" />}
