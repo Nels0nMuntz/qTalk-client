@@ -41,7 +41,7 @@ export async function POST(req: Request) {
         return buildResponse({ name: subtalk.name}, { status: 201 })
     } catch (error) {
         if(error instanceof z.ZodError) {
-            return buildResponse(error.message, { status: 422 })
+            return buildResponse('Invalid request data passed', { status: 422 })
         }
 
         return buildResponse('Internal server error', { status: 500 })

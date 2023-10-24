@@ -5,7 +5,7 @@ export const createSubtalkSchema = z.object({
 });
 
 export const subtalkSubscriptionSchema = z.object({
-  name: z.string(),
+  subtalkId: z.string(),
 });
 
 export type CreateSubtalkPayload = z.infer<typeof createSubtalkSchema>

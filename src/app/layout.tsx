@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="light">
       <body
-        className={cn(fontInter.variable, 'bg-white to-slate-900 antialiased')}
+        className={cn(fontInter.variable, 'bg-slate-50 text-slate-900 antialiased light')}
       >
         <QueryProvider>
           <Navbar />
