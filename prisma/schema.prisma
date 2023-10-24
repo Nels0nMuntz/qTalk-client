@@ -48,7 +48,7 @@ model User {
   name              String?
   email             String?        @unique
   emailVerified     DateTime?
-  createdSubreddits Subreddit[]    @relation("CreatedBy")
+  createdSubtalks Subtalk[]    @relation("CreatedBy")
   subscriptions     Subscription[]
   votes             Vote[]
 
@@ -63,12 +63,12 @@ model User {
   CommentVote CommentVote[]
 }
 
-model Subreddit {
-  id        String   @id @default(cuid())
-  name      String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  posts     Post[]
+model Subtalk {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  posts       Post[]
 
   creatorId   String?
   Creator     User?          @relation("CreatedBy", fields: [creatorId], references: [id])
@@ -80,10 +80,10 @@ model Subreddit {
 model Subscription {
   user        User      @relation(fields: [userId], references: [id])
   userId      String
-  subreddit   Subreddit @relation(fields: [subredditId], references: [id])
-  subredditId String
+  subtalk     Subtalk @relation(fields: [subtalkId], references: [id])
+  subtalkId   String
 
-  @@id([userId, subredditId])
+  @@id([userId, subtalkId])
 }
 
 model Post {
@@ -94,8 +94,8 @@ model Post {
   updatedAt   DateTime  @updatedAt
   author      User      @relation(fields: [authorId], references: [id])
   authorId    String
-  subreddit   Subreddit @relation(fields: [subredditId], references: [id])
-  subredditId String
+  subtalk     Subtalk @relation(fields: [subtalkId], references: [id])
+  subtalkId   String
   comments    Comment[] 
   votes       Vote[]
 }

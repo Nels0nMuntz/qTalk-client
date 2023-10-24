@@ -3,13 +3,18 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
+import axios, { AxiosError } from 'axios';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { CreateSubtalkPayload } from '@/lib/validators';
+import { notify } from '@/lib/utils';
+import { useCustomNotifications } from '@/hooks';
+import { CreateSubtalkResponse } from "@/app/types";
 
 export default function Page() {
   const router = useRouter();
   const [input, setInput] = useState<string>('');
+  const { loginNotification } = useCustomNotifications();
 
   const { mutate: createCommunity, isPending } = useMutation({
     mutationFn: async () => {
@@ -17,12 +22,37 @@ export default function Page() {
         name: input,
       };
 
-      const response = await fetch('/api/subtalk', {
-        method: 'POST',
-        body: JSON.stringify(payload),
+      const { data } = await axios.post<CreateSubtalkResponse>('/api/subtalk', payload);
+      return data;
+    },
+    onSuccess: (data) => {
+      router.push(`/t/${data.name}`)
+    },
+    onError: (error) => {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 409) {
+          return notify({
+            title: 'Subtalk already exists.',
+            description: 'Please choose a different name.',
+            variant: 'error',
+          });
+        }
+        if (error.response?.status === 422) {
+          return notify({
+            title: 'Invalid subtalk name.',
+            description: 'Please choose a name between 2 and 22 letters.',
+            variant: 'error',
+          });
+        }
+        if (error.response?.status === 401) {
+          return loginNotification();
+        }
+      }
+      notify({
+        title: 'There was an error.',
+        description: 'Could not create subreddit.',
+        variant: 'error',
       });
-      const data = await response.json();
-      return data as string;
     },
   });
 

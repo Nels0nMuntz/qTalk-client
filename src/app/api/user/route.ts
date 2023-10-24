@@ -33,7 +33,6 @@ export async function POST(req: Request) {
     });
     return buildResponse('User was created', { status: 201 });
   } catch (error) {
-    console.log('/api/user POST route handler error');
     console.log(error);
 
     if (error instanceof z.ZodError) {
