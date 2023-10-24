@@ -18,11 +18,12 @@ import { Input } from '../ui/input';
 import { SignInFormSchema, signInFormSchema } from '@/lib/validators';
 import { Checkbox } from '../ui/checkbox';
 import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function SignInForm() {
   const { toast } = useToast();
-  // const searchParams = useSearchParams();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const form = useForm<SignInFormSchema>({
     resolver: zodResolver(signInFormSchema),
@@ -37,14 +38,21 @@ export default function SignInForm() {
     setIsSubmitting(true);
 
     try {
-      const res = await signIn('credentials', {
+      const response = await signIn('credentials', {
         ...values,
         redirect: false,
-        // callbackUrl: searchParams.get("callbackUrl") || "/"
+        callbackUrl: searchParams.get("callbackUrl") || "/"
       });
-      console.log({res});
-      
+      if(response?.ok) {
+        router.push('/')
+      } else {
+        toast({
+          title: 'Email or password is invalid',
+          variant: 'destructive',
+        })
+      }
     } catch (error) {
+      console.log(error);      
       toast({
         title: 'There was a problem',
         description: 'There was an error loggong in',
@@ -95,7 +103,7 @@ export default function SignInForm() {
               <FormControl>
                 <Checkbox
                   {...field}
-                  value={field.value.toString()}
+                  value={field.value?.toString()}
                   checked={field.value}
                   onCheckedChange={field.onChange}
                 />
