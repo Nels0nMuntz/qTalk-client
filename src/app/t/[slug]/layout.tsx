@@ -103,7 +103,7 @@ export default async function Layout({ params, children }: Props) {
                   variant: 'outline',
                   className: 'w-full mb-6',
                 })}
-                href={`t/${params.slug}/submit`}
+                href={`/t/${params.slug}/submit`}
               >
                 Create Post
               </Link>

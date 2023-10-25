@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { CreateSubtalkPayload } from '@/lib/validators';
 import { notify } from '@/lib/utils';
 import { useCustomNotifications } from '@/hooks';
-import { CreateSubtalkResponse } from "@/app/types";
+import { CreateSubtalkResponse } from "@/types";
 
 export default function Page() {
   const router = useRouter();

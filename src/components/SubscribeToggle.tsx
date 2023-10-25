@@ -8,7 +8,7 @@ import { useMutation } from '@tanstack/react-query';
 import { SubscribeToSubtalkPayload } from '@/lib/validators';
 import { useCustomNotifications } from '@/hooks';
 import { notify } from '@/lib/utils';
-import { SubscriptionResponse } from '@/app/types';
+import { SubscriptionResponse } from '@/types';
 
 interface Props {
   isSubscribed: boolean;
