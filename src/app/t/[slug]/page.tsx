@@ -4,6 +4,7 @@ import { db } from '@/lib/db';
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/constants';
 import { getAuthSession } from "@/lib/auth";
 import MiniCreatePost from "@/components/MiniCreatePost";
+import PostFeed from "@/components/PostFeed";
 
 interface Props {
   params: {
@@ -38,6 +39,7 @@ export default async function Page({ params }: Props) {
     <>
       <h1 className="h-14 text-3xl md:text-4xl font-bold">t/{subtalk.name}</h1>
       <MiniCreatePost session={session}/>
+      <PostFeed initialPosts={subtalk.posts} subtalkName={subtalk.name}/>
     </>
   );
 }

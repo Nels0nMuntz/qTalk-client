@@ -5,7 +5,7 @@ import { fontInter } from '../fonts/inter';
 import { cn } from '@/lib/utils';
 import Navbar from '@/components/navbar/Navbar';
 import Toaster from '@/components/Toaster';
-import QueryProvider from './providers/QueryProvider';
+import QueryProvider from '../providers/Providers';
 
 export const metadata: Metadata = {
   title: 'Create Next App',

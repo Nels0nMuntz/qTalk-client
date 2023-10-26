@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     const session = await getAuthSession();
 
     if (!session?.user) {
-      return buildResponse('Unauthorized', { status: 400 });
+      return buildResponse('Unauthorized', { status: 401 });
     }
 
     const body = await req.json();
