@@ -2,6 +2,7 @@
 
 import React, { useRef, useState } from 'react';
 import { useSession } from 'next-auth/react';
+import axios from "axios";
 import { Comment, CommentVote, User } from '@prisma/client';
 import { MessageSquare } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -13,7 +14,7 @@ import { Label } from '../ui/label';
 import { Textarea } from '../ui/textarea';
 import { useMutation } from "@tanstack/react-query";
 import { CreateCommentPayload } from "@/lib/validators/commentSchema";
-import axios from "axios";
+import { useOnClickOutside } from "@/hooks";
 
 type ExtendedComment = Comment & {
   votes: CommentVote[];
@@ -38,6 +39,9 @@ export default function PostComment({
   const [value, setValue] = useState('');
   const commentRef = useRef<HTMLDivElement>(null);
   const { data: session } = useSession();
+  useOnClickOutside(commentRef, () => {
+    setIsReplying(false)
+  })
   const handleReply = () => {
     if (!session) {
       return router.push('/sign-in');

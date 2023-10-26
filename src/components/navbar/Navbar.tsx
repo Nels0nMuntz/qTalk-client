@@ -5,10 +5,11 @@ import { Icons } from '../Icons';
 import { buttonVariants } from '../ui/button';
 import UserAccountNavbar from './UserAccountNavbar';
 import { authoOptions } from "@/lib/auth";
+import Searchbar from "./Searchbar";
 
 export default async function Navbar() {
   const session = await getServerSession(authoOptions);
-  
+
   return (
     <div className="fixed top-0 inset-x-0 h-fit bg-zinc-100 border-b border-zinc-300 z-10 py-2">
       <div className="container max-w-7xl h-full mx-auto flex items-center justify-between gap-2">
@@ -18,6 +19,7 @@ export default async function Navbar() {
             qTalk
           </span>
         </Link>
+        <Searchbar/>
         {session?.user ? (
           <UserAccountNavbar user={session.user} />
         ) : (
