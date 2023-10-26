@@ -9,9 +9,7 @@ import PostVoteServer from '@/components/post-vote/PostVoteServer';
 import { buttonVariants } from '@/components/ui/button';
 import { formatTimeToNow } from "@/lib/utils";
 import EditorOutput from "@/components/EditorOutput";
-import CommentsSection from "@/components/CommentsSection";
-
-const delay = (ms: number) => new Promise(res => setTimeout(res, ms))
+import CommentsSection from "@/components/comments/CommentsSection";
 
 interface Props {
   params: {
@@ -40,7 +38,6 @@ export default async function Page({ params }: Props) {
   }
 
   const getPostDate = async () => {
-    await delay(6000)
     return await db.post.findUnique({
       where: {
         id: params.id,
