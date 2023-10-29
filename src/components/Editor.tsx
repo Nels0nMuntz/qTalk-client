@@ -11,6 +11,7 @@ import { CreatePostPayload, postSchema } from '@/lib/validators';
 import { uploadFiles } from '@/lib/uploadthing';
 import { notify } from '@/lib/utils';
 import { useMutation } from '@tanstack/react-query';
+import { revalidatePath } from 'next/cache';
 
 interface Props {
   subtalkId: string;
@@ -102,7 +103,7 @@ export default function Editor({ subtalkId }: Props) {
       const { data } = await axios.post('/api/subtalk/post', payload);
       return data;
     },
-    onError: () => {
+    onError: (error) => {
       notify({
         title: 'Something went wrong',
         description: 'Your post was not published, please try again later',

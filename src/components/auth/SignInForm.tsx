@@ -4,7 +4,6 @@ import React from 'react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useToast } from '@/components/ui/use-toast';
 import { Button } from '../ui/button';
 import {
   Form,
@@ -19,9 +18,9 @@ import { SignInFormSchema, signInFormSchema } from '@/lib/validators';
 import { Checkbox } from '../ui/checkbox';
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { notify } from "@/lib/utils";
 
 export default function SignInForm() {
-  const { toast } = useToast();
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -43,20 +42,21 @@ export default function SignInForm() {
         redirect: false,
         callbackUrl: searchParams.get("callbackUrl") || "/"
       });
+      console.log({response});
+      
       if(response?.ok) {
         router.push('/')
       } else {
-        toast({
+        notify({
           title: 'Email or password is invalid',
-          variant: 'destructive',
+          variant: 'error',
         })
       }
-    } catch (error) {
-      console.log(error);      
-      toast({
+    } catch (error) {      
+      notify({
         title: 'There was a problem',
         description: 'There was an error loggong in',
-        variant: 'destructive',
+        variant: 'error',
       });
     } finally {
       setIsSubmitting(false);

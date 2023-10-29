@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const createSubtalkSchema = z.object({
-  name: z.string().min(2).max(22),
+  name: z.string().min(2).max(22).regex(/^[a-zA-Z0-9_.-]*$/),
 });
 
 export const subtalkSubscriptionSchema = z.object({

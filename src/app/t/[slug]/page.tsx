@@ -27,9 +27,12 @@ export default async function Page({ params }: Props) {
           subtalk: true,
         },
         take: INFINITE_SCROLLING_PAGINATION_RESULTS,
+        orderBy: {
+          createdAt: 'desc',
+        }
       },
     },
-  });
+  });  
 
   if (!subtalk) {
     return notFound();

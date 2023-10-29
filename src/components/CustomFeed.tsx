@@ -14,12 +14,13 @@ export default async function CustomFeed() {
       subtalk: true,
     },
   });
-
+  const followedCommunitiesIds = followedCommunities.map(({ subtalk }) => subtalk.id);
+  
   const posts = await db.post.findMany({
     where: {
       subtalk: {
-        name: {
-          in: followedCommunities.map(({ subtalk }) => subtalk.name),
+        id: {
+          in: followedCommunitiesIds,
         },
       },
     },
@@ -34,5 +35,6 @@ export default async function CustomFeed() {
     },
     take: INFINITE_SCROLLING_PAGINATION_RESULTS,
   });
+  
   return <PostFeed initialPosts={posts} />;
 }

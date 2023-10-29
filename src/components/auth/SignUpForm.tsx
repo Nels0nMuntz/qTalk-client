@@ -14,11 +14,10 @@ import {
 import { Input } from '../ui/input';
 import { SignUpFormSchema, signUpFormSchema } from '@/lib/validators';
 import { Button } from '../ui/button';
-import { useToast } from '../ui/use-toast';
 import { useRouter } from 'next/navigation';
+import { notify } from "@/lib/utils";
 
 export default function SignUpForm() {
-  const { toast } = useToast();
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const form = useForm<SignUpFormSchema>({
@@ -43,10 +42,10 @@ export default function SignUpForm() {
       });
       const data = await response.json();
       if (response.status === 201) {
-        toast({ title: data.message, variant: 'default' });
+        notify({ title: data.message, variant: 'error' });
         router.push('/sign-in');
       } else {
-        toast({ title: data.message, variant: 'destructive' });
+        notify({ title: data.message, variant: 'error' });
       }
     } catch (error) {
       console.log(error);

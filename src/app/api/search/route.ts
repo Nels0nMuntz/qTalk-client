@@ -12,8 +12,9 @@ export async function GET(req: Request) {
 
     const results = await db.subtalk.findMany({
       where: {
-        name: {
-          startsWith: query,
+        name: {          
+          startsWith: query,     
+          mode: 'insensitive'     
         },
       },
       include: {

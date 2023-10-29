@@ -19,7 +19,7 @@ export default function SignIn() {
         <SignInWithGoogleButton/>
 
         <div className="relative w-full text-center">
-          <span className="relative inline-block px-3 text-sm text-zinc-500 uppercase bg-white z-[1]">or continue with</span>
+          <span className="relative inline-block px-3 text-sm text-zinc-500 uppercase bg-slate-50 z-[1]">or continue with</span>
           <Separator className="absolute top-1/2 left-0 right-0" />
         </div>
 

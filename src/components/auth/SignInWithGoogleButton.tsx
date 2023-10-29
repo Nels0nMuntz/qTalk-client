@@ -1,14 +1,13 @@
 'use client';
 
 import React from 'react';
-import { useToast } from '@/components/ui/use-toast';
 import { signIn } from 'next-auth/react';
 import { Icons } from '../Icons';
 import { Button } from '../ui/button';
+import { notify } from "@/lib/utils";
 
 export default function SignInWithGoogleButton() {
   const [isLoading, setIsLoading] = React.useState(false);
-  const { toast } = useToast();
 
   const signInWithGoogle = async () => {
     setIsLoading(true);
@@ -18,10 +17,10 @@ export default function SignInWithGoogleButton() {
     
     } catch (error) {
       console.log(error);      
-      toast({
+      notify({
+        variant: 'error',
         title: 'There was a problem',
         description: 'There was an error loggong in with Google',
-        variant: 'destructive',
       });
     } finally {
       setIsLoading(false);

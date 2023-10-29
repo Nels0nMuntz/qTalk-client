@@ -6,7 +6,7 @@ import GeneralFeed from '@/components/GeneralFeed';
 import CustomFeed from '@/components/CustomFeed';
 
 export default async function Home() {
-  const session = await getAuthSession();
+  const session = await getAuthSession();  
   return (
     <>
       <h1 className="text-3xl md:text-4xl font-bold">Your feed</h1>

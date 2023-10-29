@@ -15,6 +15,7 @@ import {
 } from '../ui/command';
 import { SearchResult } from '@/types';
 import { Users } from 'lucide-react';
+import { useOnClickOutside } from '@/hooks';
 
 export default function Searchbar() {
   const router = useRouter();
@@ -40,6 +41,10 @@ export default function Searchbar() {
     setValue('');
   }, [pathname]);
 
+  useOnClickOutside(commandRef, () => {
+    setValue('');
+  });
+
   const request = debounce(async () => {
     refetch();
   }, 400);
@@ -47,6 +52,21 @@ export default function Searchbar() {
   const debounceRequest = useCallback(() => {
     request();
   }, []);
+
+  const handleClick = (event: React.MouseEvent, url: string) => {
+    event.preventDefault();
+    event.stopPropagation();
+    router.push(url);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent, url: string) => {
+    console.log(event.code);
+    if (event.code === '13') {
+      event.preventDefault();
+      event.stopPropagation();
+      router.push(url);
+    }
+  };
 
   return (
     <Command
@@ -77,7 +97,15 @@ export default function Searchbar() {
                   }}
                 >
                   <Users className="w-4 h-4 mr-2" />
-                  <a href={`/t/${name}`}>t/{name}</a>
+                  <span
+                    tabIndex={0}
+                    role="link"
+                    onClick={(e) => handleClick(e, `/t/${name}`)}
+                    onKeyDown={(e) => handleKeyDown(e, `/t/${name}`)}
+                    className="cursor-pointer"
+                  >
+                    t/{name}
+                  </span>
                 </CommandItem>
               ))}
             </CommandGroup>
