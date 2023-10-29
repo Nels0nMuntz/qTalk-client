@@ -1,8 +1,8 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { redirect } from "next/navigation";
-import { getAuthSession } from "@/lib/auth";
-import SettingsForm from "@/components/settings/SettingsForm";
+import { redirect } from 'next/navigation';
+import { getAuthSession } from '@/lib/auth';
+import SettingsForm from '@/components/settings/SettingsForm';
 
 export const metadata: Metadata = {
   title: 'Settings',
@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const session = await getAuthSession()
-  if(!session?.user) {
-    redirect('/sign-in')
+  const session = await getAuthSession();
+  if (!session?.user) {
+    redirect('/sign-in');
   }
   return (
     <div className="max-w-4xl mx-auto py-12">

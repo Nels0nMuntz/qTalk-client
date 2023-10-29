@@ -6,7 +6,7 @@ import GeneralFeed from '@/components/GeneralFeed';
 import CustomFeed from '@/components/CustomFeed';
 
 export default async function Home() {
-  const session = await getAuthSession();  
+  const session = await getAuthSession();
   return (
     <>
       <h1 className="text-3xl md:text-4xl font-bold">Your feed</h1>
@@ -23,8 +23,8 @@ export default async function Home() {
           <div className="-my-3 px-6 py-4 divide-y divide-gray-100 text-sm leading-6">
             <div className="flex justify-between gap-x-4 py-3">
               <p className="text-zinc-500">
-                Your personal <strong>qTalk</strong> frontpage. Come here to check in with your
-                favorite communities.
+                Your personal <strong>qTalk</strong> frontpage. Come here to
+                check in with your favorite communities.
               </p>
             </div>
             <Link

@@ -7,9 +7,9 @@ import { MessageSquare } from 'lucide-react';
 import Link from 'next/link';
 import React, { useRef } from 'react';
 import EditorOutput from './EditorOutput';
-import PostVoteClient from "./post-vote/PostVoteClient";
+import PostVoteClient from './post-vote/PostVoteClient';
 
-type PartialVote = Pick<Vote, 'type'>
+type PartialVote = Pick<Vote, 'type'>;
 
 interface Props {
   post: ExtendedPost;
@@ -25,7 +25,11 @@ export default function Post({ post, votesCount, currentVote }: Props) {
   return (
     <div className="rounded-md bg-white shadow">
       <div className="px-6 py-4 flex justify-between">
-        <PostVoteClient postId={post.id} initialVote={currentVote?.type || null} initialVoteCount={votesCount}/>
+        <PostVoteClient
+          postId={post.id}
+          initialVote={currentVote?.type || null}
+          initialVoteCount={votesCount}
+        />
         <div className="w-0 flex-1">
           <div className="max-h-40 mt-1 text-xs text-gray-500">
             {subtalkName ? (

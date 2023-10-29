@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 import { db } from '@/lib/db';
 import { getAuthSession } from '@/lib/auth';
 import { buildResponse } from '@/lib/utils';
@@ -14,7 +14,6 @@ export async function PATCH(req: Request) {
 
     const body = await req.json();
     const { commentId, voteType } = commentVoteSchema.parse(body);
-    const userId = session.user.id;
 
     const existingVote = await db.commentVote.findFirst({
       where: {

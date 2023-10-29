@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { CreateSubtalkPayload } from '@/lib/validators';
 import { notify } from '@/lib/utils';
 import { useCustomNotifications } from '@/hooks';
-import { CreateSubtalkResponse } from "@/types";
+import { CreateSubtalkResponse } from '@/types';
 
 export default function Page() {
   const router = useRouter();
@@ -22,11 +22,14 @@ export default function Page() {
         name: input,
       };
 
-      const { data } = await axios.post<CreateSubtalkResponse>('/api/subtalk', payload);
+      const { data } = await axios.post<CreateSubtalkResponse>(
+        '/api/subtalk',
+        payload,
+      );
       return data;
     },
     onSuccess: (data) => {
-      router.push(`/t/${data.name}`)
+      router.push(`/t/${data.name}`);
     },
     onError: (error) => {
       if (error instanceof AxiosError) {

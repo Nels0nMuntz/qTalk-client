@@ -54,7 +54,7 @@ export async function GET(req: Request) {
           },
         },
       };
-    }    
+    }
 
     const posts = await db.post.findMany({
       where: whereClause,

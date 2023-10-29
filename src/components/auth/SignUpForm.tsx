@@ -15,7 +15,7 @@ import { Input } from '../ui/input';
 import { SignUpFormSchema, signUpFormSchema } from '@/lib/validators';
 import { Button } from '../ui/button';
 import { useRouter } from 'next/navigation';
-import { notify } from "@/lib/utils";
+import { notify } from '@/lib/utils';
 
 export default function SignUpForm() {
   const router = useRouter();
@@ -37,7 +37,7 @@ export default function SignUpForm() {
         method: 'POST',
         body: JSON.stringify(values),
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       });
       const data = await response.json();

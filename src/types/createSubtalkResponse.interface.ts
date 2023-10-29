@@ -1,3 +1,3 @@
 export interface CreateSubtalkResponse {
-    name: string;
+  name: string;
 }

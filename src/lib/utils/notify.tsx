@@ -1,6 +1,6 @@
 import toast, { ToastOptions, Toast } from 'react-hot-toast';
-import { CheckCircle, XCircle, LucideIcon, X } from 'lucide-react';
-import React from "react";
+import { CheckCircle, XCircle, X } from 'lucide-react';
+import React from 'react';
 
 type NotifyVariants = 'success' | 'error';
 
@@ -41,7 +41,7 @@ export const notify = ({
             onClick={() => toast.dismiss(t.id)}
           >
             <span className="sr-only">Close</span>
-            <X size={20}/>
+            <X size={20} />
           </button>
         </div>
       </div>

@@ -2,9 +2,9 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import { db } from '@/lib/db';
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/constants';
-import { getAuthSession } from "@/lib/auth";
-import MiniCreatePost from "@/components/MiniCreatePost";
-import PostFeed from "@/components/PostFeed";
+import { getAuthSession } from '@/lib/auth';
+import MiniCreatePost from '@/components/MiniCreatePost';
+import PostFeed from '@/components/PostFeed';
 
 interface Props {
   params: {
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default async function Page({ params }: Props) {
-    const session = await getAuthSession()
+  const session = await getAuthSession();
   const subtalk = await db.subtalk.findFirst({
     where: {
       name: params.slug,
@@ -29,10 +29,10 @@ export default async function Page({ params }: Props) {
         take: INFINITE_SCROLLING_PAGINATION_RESULTS,
         orderBy: {
           createdAt: 'desc',
-        }
+        },
       },
     },
-  });  
+  });
 
   if (!subtalk) {
     return notFound();
@@ -41,8 +41,8 @@ export default async function Page({ params }: Props) {
   return (
     <>
       <h1 className="h-14 text-3xl md:text-4xl font-bold">t/{subtalk.name}</h1>
-      <MiniCreatePost session={session}/>
-      <PostFeed initialPosts={subtalk.posts} subtalkName={subtalk.name}/>
+      <MiniCreatePost session={session} />
+      <PostFeed initialPosts={subtalk.posts} subtalkName={subtalk.name} />
     </>
   );
 }

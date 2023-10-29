@@ -16,9 +16,9 @@ import {
 import { Input } from '../ui/input';
 import { SignInFormSchema, signInFormSchema } from '@/lib/validators';
 import { Checkbox } from '../ui/checkbox';
-import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { notify } from "@/lib/utils";
+import { signIn } from 'next-auth/react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { notify } from '@/lib/utils';
 
 export default function SignInForm() {
   const router = useRouter();
@@ -40,19 +40,19 @@ export default function SignInForm() {
       const response = await signIn('credentials', {
         ...values,
         redirect: false,
-        callbackUrl: searchParams.get("callbackUrl") || "/"
+        callbackUrl: searchParams.get('callbackUrl') || '/',
       });
-      console.log({response});
-      
-      if(response?.ok) {
-        router.push('/')
+      console.log({ response });
+
+      if (response?.ok) {
+        router.push('/');
       } else {
         notify({
           title: 'Email or password is invalid',
           variant: 'error',
-        })
+        });
       }
-    } catch (error) {      
+    } catch (error) {
       notify({
         title: 'There was a problem',
         description: 'There was an error loggong in',
@@ -119,7 +119,10 @@ export default function SignInForm() {
         >
           Forgot Password ?
         </Link>
-        <Button className="w-full text-white bg-rose-400 rounded-lg hover:bg-rose-500 transition-colors" isLoading={isSubmitting}>
+        <Button
+          className="w-full text-white bg-rose-400 rounded-lg hover:bg-rose-500 transition-colors"
+          isLoading={isSubmitting}
+        >
           Sign In
         </Button>
       </form>

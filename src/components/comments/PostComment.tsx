@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import axios from "axios";
+import axios from 'axios';
 import { Comment, CommentVote, User } from '@prisma/client';
 import { MessageSquare } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -12,9 +12,9 @@ import CommentVotes from './CommentVotes';
 import { Button } from '../ui/button';
 import { Label } from '../ui/label';
 import { Textarea } from '../ui/textarea';
-import { useMutation } from "@tanstack/react-query";
-import { CreateCommentPayload } from "@/lib/validators/commentSchema";
-import { useOnClickOutside } from "@/hooks";
+import { useMutation } from '@tanstack/react-query';
+import { CreateCommentPayload } from '@/lib/validators/commentSchema';
+import { useOnClickOutside } from '@/hooks';
 
 type ExtendedComment = Comment & {
   votes: CommentVote[];
@@ -40,8 +40,8 @@ export default function PostComment({
   const commentRef = useRef<HTMLDivElement>(null);
   const { data: session } = useSession();
   useOnClickOutside(commentRef, () => {
-    setIsReplying(false)
-  })
+    setIsReplying(false);
+  });
   const handleReply = () => {
     if (!session) {
       return router.push('/sign-in');
@@ -50,33 +50,33 @@ export default function PostComment({
   };
   const { mutate: postComment, isPending } = useMutation({
     mutationFn: async (payload: CreateCommentPayload) => {
-      const {data} = await axios.post('/api/subtalk/post/comment', payload)
-      return data
+      const { data } = await axios.post('/api/subtalk/post/comment', payload);
+      return data;
     },
     onSuccess: () => {
-      setIsReplying(false)
-      setValue('')
-      router.refresh()
+      setIsReplying(false);
+      setValue('');
+      router.refresh();
     },
     onError: () => {
       return notify({
         variant: 'error',
         title: 'Something went wrong.',
         description: "Comment wasn't created successfully. Please try again.",
-      })
-    }
+      });
+    },
   });
   const handlePostComment = () => {
     postComment({
       text: value,
       postId,
-      replyToId: comment.replyToId ?? comment.id
-    })
-  }
+      replyToId: comment.replyToId ?? comment.id,
+    });
+  };
   const handleCancelComment = () => {
-    setIsReplying(false)
-    setValue('')
-  }
+    setIsReplying(false);
+    setValue('');
+  };
   return (
     <div ref={commentRef} className="flex flex-col">
       <div className="flex items-center">

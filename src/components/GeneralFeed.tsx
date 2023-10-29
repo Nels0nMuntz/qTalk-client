@@ -1,6 +1,6 @@
 import React from 'react';
 import { db } from '@/lib/db';
-import PostFeed from "./PostFeed";
+import PostFeed from './PostFeed';
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/constants';
 
 export default async function GeneralFeed() {
@@ -16,5 +16,5 @@ export default async function GeneralFeed() {
     },
     take: INFINITE_SCROLLING_PAGINATION_RESULTS,
   });
-  return <PostFeed initialPosts={posts}/>;
+  return <PostFeed initialPosts={posts} />;
 }

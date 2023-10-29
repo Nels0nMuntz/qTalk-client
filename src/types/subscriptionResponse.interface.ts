@@ -1,3 +1,3 @@
 export interface SubscriptionResponse {
-    subtalkId: string;
+  subtalkId: string;
 }

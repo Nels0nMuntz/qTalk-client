@@ -20,7 +20,6 @@ export const authoOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-      
     }),
     CredentialsProvider({
       type: 'credentials',
@@ -29,7 +28,7 @@ export const authoOptions: NextAuthOptions = {
         email: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'text' },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         if (!credentials?.email || !credentials.password) {
           return null;
         }
@@ -47,7 +46,7 @@ export const authoOptions: NextAuthOptions = {
           credentials.password,
           userbyEmail.password,
         );
-        
+
         if (!isPasswordValid) {
           return null;
         }

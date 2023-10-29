@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Image from "next/image";
+import Image from 'next/image';
 
 export default function CustomImageRenderer({ data }: any) {
   const src = data.file.url;

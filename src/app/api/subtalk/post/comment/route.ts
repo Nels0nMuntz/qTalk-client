@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 import { db } from '@/lib/db';
 import { getAuthSession } from '@/lib/auth';
 import { buildResponse } from '@/lib/utils';
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
       },
     });
 
-    return buildResponse("Comment was created")
+    return buildResponse('Comment was created');
   } catch (error) {
     if (error instanceof z.ZodError) {
       return buildResponse('Invalid request data passed', { status: 422 });

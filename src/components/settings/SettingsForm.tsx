@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 import axios, { AxiosError } from 'axios';
 import { User } from '@prisma/client';
 import { useForm } from 'react-hook-form';
@@ -29,7 +29,7 @@ interface Props {
 }
 
 export default function SettingsForm({ user }: Props) {
-  const router = useRouter()
+  const router = useRouter();
   const {
     handleSubmit,
     register,
@@ -51,7 +51,7 @@ export default function SettingsForm({ user }: Props) {
         variant: 'success',
         title: 'Your username has been updated.',
       });
-      router.refresh()
+      router.refresh();
     },
     onError: (error) => {
       if (error instanceof AxiosError) {

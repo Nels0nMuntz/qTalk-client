@@ -22,7 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="light">
       <body
-        className={cn(fontInter.variable, 'bg-slate-50 text-slate-900 antialiased light')}
+        className={cn(
+          fontInter.variable,
+          'bg-slate-50 text-slate-900 antialiased light',
+        )}
       >
         <QueryProvider>
           <Navbar />
@@ -31,7 +34,7 @@ export default function RootLayout({
             {children}
           </div>
         </QueryProvider>
-        <Toaster/>
+        <Toaster />
       </body>
     </html>
   );

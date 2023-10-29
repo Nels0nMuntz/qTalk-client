@@ -2,7 +2,7 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import { db } from '@/lib/db';
 import { Button } from '@/components/ui/button';
-import Editor from "@/components/Editor";
+import Editor from '@/components/Editor';
 
 interface Props {
   params: {
@@ -31,7 +31,7 @@ export default async function Page({ params }: Props) {
           </p>
         </div>
       </div>
-      <Editor subtalkId={subtalk.id}/>
+      <Editor subtalkId={subtalk.id} />
       <div className="w-full flex justify-end">
         <Button type="submit" className="w-full" form="subtalk-post-form">
           Post

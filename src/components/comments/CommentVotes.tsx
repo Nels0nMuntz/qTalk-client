@@ -99,7 +99,7 @@ export default function CommentVotes({
         variant="ghost"
         aria-label="downvote"
         className={cn({
-            'text-emerald-500': currentVote?.type === 'DOWN',
+          'text-emerald-500': currentVote?.type === 'DOWN',
         })}
         onClick={downvote}
       >

@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import React from 'react';
-import { getServerSession } from "next-auth";
+import { getServerSession } from 'next-auth';
 import { Icons } from '../Icons';
 import { buttonVariants } from '../ui/button';
 import UserAccountNavbar from './UserAccountNavbar';
-import { authoOptions } from "@/lib/auth";
-import Searchbar from "./Searchbar";
+import { authoOptions } from '@/lib/auth';
+import Searchbar from './Searchbar';
 
 export default async function Navbar() {
   const session = await getServerSession(authoOptions);
@@ -19,7 +19,7 @@ export default async function Navbar() {
             qTalk
           </span>
         </Link>
-        <Searchbar/>
+        <Searchbar />
         {session?.user ? (
           <UserAccountNavbar user={session.user} />
         ) : (

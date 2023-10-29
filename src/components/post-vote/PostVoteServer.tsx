@@ -2,7 +2,7 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import { Post, Vote, VoteType } from '@prisma/client';
 import { getAuthSession } from '@/lib/auth';
-import PostVoteClient from "./PostVoteClient";
+import PostVoteClient from './PostVoteClient';
 
 interface Props {
   postId: string;
@@ -26,16 +26,24 @@ export default async function PostVoteServer({
     if (!post) return notFound();
 
     votesCount = post.votes.reduce((prev, curr) => {
-        if(curr.type === 'UP') return prev + 1
-        if(curr.type === 'DOWN') return prev - 1
-        return prev
-    }, 0)
+      if (curr.type === 'UP') return prev + 1;
+      if (curr.type === 'DOWN') return prev - 1;
+      return prev;
+    }, 0);
 
-    currentVote = post.votes.find(({ userId }) => userId === session?.user.id)?.type || null
+    currentVote =
+      post.votes.find(({ userId }) => userId === session?.user.id)?.type ||
+      null;
   } else {
-    votesCount = initialVotesCount!
-    currentVote = initialVote || null
+    votesCount = initialVotesCount!;
+    currentVote = initialVote || null;
   }
 
-  return <PostVoteClient postId={postId} initialVote={currentVote} initialVoteCount={votesCount} />;
+  return (
+    <PostVoteClient
+      postId={postId}
+      initialVote={currentVote}
+      initialVoteCount={votesCount}
+    />
+  );
 }

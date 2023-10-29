@@ -10,8 +10,6 @@ import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/constants';
 import { ExtendedPost } from '@/types/db';
 import Post from './Post';
 
-const sleep = (time: number) => new Promise(res => setTimeout(res, time))
-
 const getPosts = (subtalkName?: string) => {
   return async ({ pageParam }: { pageParam: number }) => {
     // await sleep(3000)
@@ -22,7 +20,6 @@ const getPosts = (subtalkName?: string) => {
     return data;
   };
 };
-
 
 interface Props {
   initialPosts: ExtendedPost[];
@@ -53,7 +50,6 @@ export default function PostFeed({ initialPosts, subtalkName }: Props) {
       pages: [initialPosts],
       pageParams: [1],
     },
-
   });
 
   useEffect(() => {

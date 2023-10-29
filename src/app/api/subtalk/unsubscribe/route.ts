@@ -2,7 +2,7 @@ import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { buildResponse } from '@/lib/utils';
 import { subtalkSubscriptionSchema } from '@/lib/validators';
-import { z } from "zod";
+import { z } from 'zod';
 
 export async function POST(req: Request) {
   try {
@@ -38,7 +38,7 @@ export async function POST(req: Request) {
       },
     });
 
-    return buildResponse({subtalkId}, { status: 200 })
+    return buildResponse({ subtalkId }, { status: 200 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return buildResponse('Invalid request data passed', { status: 422 });

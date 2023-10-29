@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { Icons } from '../Icons';
-import SignInWithGoogleButton from "./SignInWithGoogleButton";
-import SignInForm from "./SignInForm";
-import { Separator } from "../ui/separator";
+import SignInWithGoogleButton from './SignInWithGoogleButton';
+import SignInForm from './SignInForm';
+import { Separator } from '../ui/separator';
 
 export default function SignIn() {
   return (
@@ -16,14 +16,16 @@ export default function SignIn() {
           User Agreement and Privacy Policy
         </p>
 
-        <SignInWithGoogleButton/>
+        <SignInWithGoogleButton />
 
         <div className="relative w-full text-center">
-          <span className="relative inline-block px-3 text-sm text-zinc-500 uppercase bg-slate-50 z-[1]">or continue with</span>
+          <span className="relative inline-block px-3 text-sm text-zinc-500 uppercase bg-slate-50 z-[1]">
+            or continue with
+          </span>
           <Separator className="absolute top-1/2 left-0 right-0" />
         </div>
 
-        <SignInForm/>
+        <SignInForm />
 
         <p className="px-8 pt-4 text-center text-sm text-zinc-700">
           New to qTack?{' '}

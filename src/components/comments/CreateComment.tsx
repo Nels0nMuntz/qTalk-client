@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -13,7 +13,7 @@ import { notify } from '@/lib/utils';
 
 interface Props {
   postId: string;
-  replyToId?: string
+  replyToId?: string;
 }
 
 export default function CreateComment({ postId, replyToId }: Props) {
@@ -50,9 +50,9 @@ export default function CreateComment({ postId, replyToId }: Props) {
       postId,
       replyToId,
       text: value,
-    })
-  }
-  
+    });
+  };
+
   return (
     <div className="grid w-full gap-1.5">
       <Label htmlFor="comment">Your comment</Label>
