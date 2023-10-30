@@ -12,7 +12,7 @@ export default function SignInWithGoogleButton() {
   const signInWithGoogle = async () => {
     setIsLoading(true);
     try {
-      const response = await signIn('google');
+      const response = await signIn('google', { callbackUrl: '/' });
       console.log({ response });
     } catch (error) {
       console.log(error);

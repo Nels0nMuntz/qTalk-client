@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     });
 
     if (!subscription) {
-      return buildResponse('Subscribe to post', { status: 403 });
+      return buildResponse('Subscribe to community', { status: 403 });
     }
 
     await db.post.create({

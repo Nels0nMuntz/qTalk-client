@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { usePathname, useRouter } from 'next/navigation';
 import TextareaAutosize from 'react-textarea-autosize';
 import type EditorJS from '@editorjs/editorjs';
@@ -11,6 +11,7 @@ import { CreatePostPayload, postSchema } from '@/lib/validators';
 import { uploadFiles } from '@/lib/uploadthing';
 import { notify } from '@/lib/utils';
 import { useMutation } from '@tanstack/react-query';
+import { useEditorDispatchContext } from '@/providers';
 
 interface Props {
   subtalkId: string;
@@ -35,6 +36,7 @@ export default function Editor({ subtalkId }: Props) {
   const pathname = usePathname();
   const ref = useRef<EditorJS>();
   const _titleRef = useRef<HTMLTextAreaElement | null>();
+  const { dispatch } = useEditorDispatchContext();
 
   const { ref: titleRef, ...titleFieldProps } = register('title');
 
@@ -102,7 +104,16 @@ export default function Editor({ subtalkId }: Props) {
       const { data } = await axios.post('/api/subtalk/post', payload);
       return data;
     },
-    onError: () => {
+    onError: (error) => {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 403) {
+          return notify({
+            variant: 'error',
+            title: 'Your post was not published',
+            description: 'First, you need to join the community',
+          });
+        }
+      }
       notify({
         title: 'Something went wrong',
         description: 'Your post was not published, please try again later',
@@ -118,6 +129,12 @@ export default function Editor({ subtalkId }: Props) {
         description: 'Your post was published',
         variant: 'success',
       });
+    },
+    onMutate: () => {
+      dispatch({ isSubmitting: true });
+    },
+    onSettled: () => {
+      dispatch({ isSubmitting: false });
     },
   });
 

@@ -12,7 +12,6 @@ import Post from './Post';
 
 const getPosts = (subtalkName?: string) => {
   return async ({ pageParam }: { pageParam: number }) => {
-    // await sleep(3000)
     const query =
       `/api/posts?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}` +
       (!!subtalkName ? `&subtalkName=${subtalkName}` : '');

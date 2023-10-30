@@ -113,7 +113,7 @@ export default function SubscribeToggle({
       isLoading={subscribeInProgress}
       onClick={handleSubscribe}
     >
-      Join to post
+      Join to community
     </Button>
   );
 }

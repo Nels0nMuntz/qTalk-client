@@ -64,7 +64,7 @@ export default function Post({ post, votesCount, currentVote }: Props) {
       </div>
       <div className="bg-gray-50 z-20 text-sm px-4 py-4 sm:px-6">
         <Link
-          href={`/r/${subtalkName}/post/${post.id}`}
+          href={`/t/${subtalkName}/post/${post.id}`}
           className="w-fit flex items-center gap-2"
         >
           <MessageSquare className="h-4 w-4" /> {commentCount} comments

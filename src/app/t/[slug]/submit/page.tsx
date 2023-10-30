@@ -1,8 +1,9 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import { db } from '@/lib/db';
-import { Button } from '@/components/ui/button';
 import Editor from '@/components/Editor';
+import { EditorProvider } from '@/providers';
+import SubmitPostButton from '@/components/SubmitPostButton';
 
 interface Props {
   params: {
@@ -31,12 +32,12 @@ export default async function Page({ params }: Props) {
           </p>
         </div>
       </div>
-      <Editor subtalkId={subtalk.id} />
-      <div className="w-full flex justify-end">
-        <Button type="submit" className="w-full" form="subtalk-post-form">
-          Post
-        </Button>
-      </div>
+      <EditorProvider>
+        <Editor subtalkId={subtalk.id} />
+        <div className="w-full flex justify-end">
+          <SubmitPostButton />
+        </div>
+      </EditorProvider>
     </div>
   );
 }
