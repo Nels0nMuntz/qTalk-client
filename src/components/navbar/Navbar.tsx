@@ -19,7 +19,7 @@ export default async function Navbar() {
             qTalk
           </span>
         </Link>
-        <Searchbar />
+        {session?.user && <Searchbar />}
         {session?.user ? (
           <UserAccountNavbar user={session.user} />
         ) : (
