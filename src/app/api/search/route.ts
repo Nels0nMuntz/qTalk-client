@@ -25,6 +25,6 @@ export async function GET(req: Request) {
 
     return buildResponse(results);
   } catch (error) {
-    return buildResponse('Internal server error');
+    return buildResponse('Internal server error', { status: 500 });
   }
 }

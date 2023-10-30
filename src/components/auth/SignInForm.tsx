@@ -46,6 +46,7 @@ export default function SignInForm() {
 
       if (response?.ok) {
         router.push('/');
+        router.refresh();
       } else {
         notify({
           title: 'Email or password is invalid',
