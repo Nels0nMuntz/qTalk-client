@@ -9,7 +9,7 @@ export default function Page() {
   return (
     <div className="absolute inset-0">
       <div className="max-w-2xl h-full mx-auto flex flex-col items-center justify-center gap-20">
-        <Link
+        {/* <Link
           href="/"
           className={cn(
             buttonVariants({ variant: 'ghost' }),
@@ -18,7 +18,7 @@ export default function Page() {
         >
           <ChevronLeft className="w-4 h-4 mr-2" />
           Home
-        </Link>
+        </Link> */}
         <SignUp />
       </div>
     </div>

@@ -86,7 +86,7 @@ export default function PostVoteClient({
   const downvote = () => vote('DOWN');
 
   return (
-    <div className="flex flex-col gap-4 sm:gap-0 pr-6 sm:w-20 pb-4 sm:pb-0">
+    <div className="flex flex-col group-[.is-post-page]:flex-row self-start gap-4 sm:gap-0 pr-4 mb:pr-6 sm:w-20 pb-4 sm:pb-0">
       <Button size="sm" variant="ghost" onClick={upvote}>
         <ArrowBigUp
           className={cn('h-5 w-5 text-zinc-700', {

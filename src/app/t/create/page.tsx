@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
@@ -10,11 +10,13 @@ import { CreateSubtalkPayload } from '@/lib/validators';
 import { notify } from '@/lib/utils';
 import { useCustomNotifications } from '@/hooks';
 import { CreateSubtalkResponse } from '@/types';
+import { Label } from '@/components/ui/label';
 
 export default function Page() {
   const router = useRouter();
   const [input, setInput] = useState<string>('');
   const { loginNotification } = useCustomNotifications();
+  const inputId = useId();
 
   const { mutate: createCommunity, isPending } = useMutation({
     mutationFn: async () => {
@@ -60,7 +62,7 @@ export default function Page() {
   });
 
   return (
-    <div className="container flex items-center h-full max-w-3xl mx-auto">
+    <div className="md:container flex items-center h-full max-w-3xl mx-auto pt-8">
       <div className="relative w-full h-fit p-4 space-y-6 bg-white rounded-lg">
         <div className="flex justify-between items-center">
           <h1 className="text-xl font-semibold">Create a Community</h1>
@@ -77,7 +79,11 @@ export default function Page() {
             <p className="absolute text-sm left-0 w-8 inset-y-0 grid place-items-center text-zinc-400">
               t/
             </p>
+            <Label htmlFor={inputId} className="sr-only">
+              Enter community name
+            </Label>
             <Input
+              id={inputId}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               className="pl-6"

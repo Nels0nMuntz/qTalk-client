@@ -42,7 +42,6 @@ export default function SignInForm() {
         redirect: false,
         callbackUrl: searchParams.get('callbackUrl') || '/',
       });
-      console.log({ response });
 
       if (response?.ok) {
         router.push('/');
@@ -114,12 +113,12 @@ export default function SignInForm() {
             </FormItem>
           )}
         />
-        <Link
+        {/* <Link
           href="/forgot-password"
           className="block text-sm font-medium text-center text-orange-600"
         >
           Forgot Password ?
-        </Link>
+        </Link> */}
         <Button
           className="w-full text-white bg-rose-400 rounded-lg hover:bg-rose-500 transition-colors"
           isLoading={isSubmitting}

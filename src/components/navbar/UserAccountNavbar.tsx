@@ -25,6 +25,7 @@ export default function UserAccountNavbar({ user }: UserAccountNavProps) {
           user={{ name: user.name || null, image: user.image || null }}
           className="h-8 w-8"
         />
+        <span className="sr-only">Open menu</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-white" align="end">
         <div className="flex items-center justify-start gap-2 p-2">

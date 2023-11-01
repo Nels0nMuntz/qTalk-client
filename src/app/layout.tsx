@@ -30,7 +30,7 @@ export default function RootLayout({
         <QueryProvider>
           <Navbar />
           {authModal}
-          <div className="container max-w-7xl mx-auto h-full pt-16">
+          <div className="container max-w-7xl mx-auto h-full pt-16 px-4 md:px-8">
             {children}
           </div>
         </QueryProvider>

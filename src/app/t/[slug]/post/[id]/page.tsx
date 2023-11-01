@@ -52,7 +52,7 @@ export default async function Page({ params }: Props) {
 
   return (
     <div>
-      <div className="h-full flex flex-col sm:flex-row items-center sm:items-start justify-between">
+      <div className="h-full flex flex-col sm:flex-row items-center sm:items-start justify-between group is-post-page">
         <Suspense fallback={<PostVoteShell />}>
           <PostVoteServer
             postId={post?.id ?? cachedPost.id}

@@ -24,7 +24,7 @@ export default function Post({ post, votesCount, currentVote }: Props) {
   const pRef = useRef<HTMLParagraphElement>(null);
   return (
     <div className="rounded-md bg-white shadow">
-      <div className="px-6 py-4 flex justify-between">
+      <div className="px-4 md:px-6 py-4 flex justify-between">
         <PostVoteClient
           postId={post.id}
           initialVote={currentVote?.type || null}
