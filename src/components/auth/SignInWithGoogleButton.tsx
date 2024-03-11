@@ -5,26 +5,10 @@ import { signIn } from 'next-auth/react';
 import { Icons } from '../Icons';
 import { Button } from '../ui/button';
 import { notify } from '@/lib/utils';
+import useSignInWithGoogle from "@/hooks/useSignInWithGoogle";
 
 export default function SignInWithGoogleButton() {
-  const [isLoading, setIsLoading] = React.useState(false);
-
-  const signInWithGoogle = async () => {
-    setIsLoading(true);
-    try {
-      const response = await signIn('google', { callbackUrl: '/' });
-      console.log({ response });
-    } catch (error) {
-      console.log(error);
-      notify({
-        variant: 'error',
-        title: 'There was a problem',
-        description: 'There was an error loggong in with Google',
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { isLoading, signInWithGoogle } = useSignInWithGoogle();
 
   return (
     <Button
@@ -34,7 +18,7 @@ export default function SignInWithGoogleButton() {
       onClick={signInWithGoogle}
       type="button"
     >
-      {!isLoading && <Icons.google className="w-4 h-4 mr-2" />}
+      {!isLoading && <Icons.google className="w-4 h-4 mr-2" data-testid="google-icon" />}
       Continue with Google
     </Button>
   );
