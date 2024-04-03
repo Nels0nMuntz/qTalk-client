@@ -1,10 +1,7 @@
 'use client';
 
-import React from 'react';
-import { signIn } from 'next-auth/react';
 import { Icons } from '../Icons';
 import { Button } from '../ui/button';
-import { notify } from '@/lib/utils';
 import useSignInWithGoogle from "@/hooks/useSignInWithGoogle";
 
 export default function SignInWithGoogleButton() {

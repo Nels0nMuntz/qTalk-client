@@ -68,6 +68,7 @@ export default function SignInForm() {
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-4 text-left"
+        aria-label='signin form'
       >
         <FormField
           control={form.control}

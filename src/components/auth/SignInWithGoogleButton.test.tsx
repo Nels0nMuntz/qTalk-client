@@ -1,8 +1,7 @@
 import React from 'react';
-import { render, screen, waitFor, renderHook } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import user from '@testing-library/user-event';
 import SignInWithGoogleButton from './SignInWithGoogleButton';
-import useSignInWithGoogle from '../../hooks/useSignInWithGoogle';
 
 jest.mock('../../hooks/useSignInWithGoogle.tsx');
 
@@ -28,7 +27,7 @@ describe('SignInWithGoogleButton component', () => {
     });
 
     expect(button).toBeInTheDocument();
-    expect(container).toMatchSnapshot()
+    expect(container).toMatchSnapshot();
   });
   it('button is disabled when isLoading variable is equal to true', async () => {
     mockUseSignInWithGoogle.default.mockReturnValueOnce({
