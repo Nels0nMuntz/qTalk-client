@@ -1,8 +1,31 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import user from '@testing-library/user-event';
-import SignInForm from './SignInForm';
+import { signIn } from 'next-auth/react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { notify } from '@/lib/utils';
+import SignInForm from '../SignInForm';
+import { SignInFormSchema } from '@/lib/validators';
 
-jest.mock('next/navigation');
+
+jest.mock('next-auth/react', () => ({
+  signIn: jest.fn(),
+}));
+
+const mockPush = jest.fn()
+const mockRefresh = jest.fn()
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: mockPush,
+    refresh: mockRefresh,
+  }),
+  useSearchParams: () => ({
+    get: jest.fn(() => '/'),
+  }),
+}));
+
+jest.mock('../../../lib/utils/notify.tsx', () => ({
+  notify: jest.fn(),
+}));
 
 class ResizeObserver {
   observe() {}
@@ -18,7 +41,29 @@ const queryPasswordHelperText = (container: HTMLElement) => {
   return container.querySelector('form > div:nth-child(2) > input + p');
 };
 
+const submitForm = async (formData: SignInFormSchema) => {
+
+  render(<SignInForm />);
+
+  const emailInput = await screen.findByLabelText('Email');
+  const passwordInput = await screen.findByLabelText('Password');
+  const checkbox = await screen.findByRole('checkbox', {
+    name: 'Remember Me',
+  });
+  const submitButton = await screen.findByRole('button', {
+    name: /sign in/i,
+  });
+
+  await user.type(emailInput, formData.email);
+  await user.type(passwordInput, formData.password);
+  await user.click(checkbox); 
+  await user.click(submitButton);
+}
+
 describe('SignInForm component', () => {
+  beforeEach(() => {
+    jest.clearAllMocks(); // Clear mock calls before each test
+  });
   window.ResizeObserver = ResizeObserver;
   it('renders correctly', async () => {
     const { container } = render(<SignInForm />);
@@ -101,26 +146,56 @@ describe('SignInForm component', () => {
       rememberMe: true,
     };
 
-    const mockUseFormReturn = jest.mock('react-hook-form', () => {
-      const realModule = jest.requireActual('react-hook-form');
+    await submitForm(formData);
 
-      return () => ({
-        ...realModule,
-      });
+    expect(signIn).toHaveBeenCalledWith('credentials', {
+      ...formData,
+      redirect: false,
+      callbackUrl: '/',
     });
-    console.log({ mockUseFormReturn });
-
-    render(<SignInForm />);
-
-    const emailInput = await screen.findByLabelText('Email');
-    const passwordInput = await screen.findByLabelText('Password');
-    const checkbox = await screen.findByRole('checkbox');
-    const submitButton = await screen.findByRole('button', {
-      name: /sign in/i,
-    });
-
-    await user.type(emailInput, formData.email);
-    await user.type(passwordInput, formData.password);
-    await user.click(checkbox);
   });
+
+  it('redirects to home after successful signin', async () => {
+    const signInMock = signIn as jest.MockedFunction<typeof signIn>;
+    signInMock.mockResolvedValue({
+      ok: true,
+      error: null,
+      status: 200,
+      url: '/'
+    });
+
+    const formData = {
+      email: 'jenna@jenna.com',
+      password: 'jennajenna',
+      rememberMe: true,
+    };
+
+    await submitForm(formData);
+
+    expect(mockPush).toHaveBeenCalledWith('/');
+    expect(mockRefresh).toHaveBeenCalled();
+    expect(notify).not.toHaveBeenCalled();
+  });
+
+  it('show error notification if signin failed', async () => {
+    const signInMock = signIn as jest.MockedFunction<typeof signIn>;
+    signInMock.mockResolvedValue({
+      ok: false,
+      error: null,
+      status: 400,
+      url: '/'
+    });
+
+    const formData = {
+      email: 'jenna@jenna.com',
+      password: 'jennajenna',
+      rememberMe: true,
+    };
+
+    await submitForm(formData);
+
+    expect(mockPush).not.toHaveBeenCalled();
+    expect(mockRefresh).not.toHaveBeenCalled();
+    expect(notify).toHaveBeenCalled();
+  })
 });

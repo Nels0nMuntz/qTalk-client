@@ -1,16 +1,16 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import user from '@testing-library/user-event';
-import SignInWithGoogleButton from './SignInWithGoogleButton';
+import SignInWithGoogleButton from '../SignInWithGoogleButton';
 
-jest.mock('../../hooks/useSignInWithGoogle.tsx');
+jest.mock('../../../hooks/useSignInWithGoogle.tsx');
 
 jest.mock('next-auth/react', () => ({
   signIn: jest.fn(),
 }));
 
 const mockUseSignInWithGoogle = jest.requireMock(
-  '../../hooks/useSignInWithGoogle.tsx',
+  '../../../hooks/useSignInWithGoogle.tsx',
 );
 
 describe('SignInWithGoogleButton component', () => {

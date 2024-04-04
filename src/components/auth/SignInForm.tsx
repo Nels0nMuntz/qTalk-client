@@ -1,9 +1,11 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { signIn } from 'next-auth/react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { notify } from '@/lib/utils';
 import { Button } from '../ui/button';
 import {
   Form,
@@ -16,9 +18,6 @@ import {
 import { Input } from '../ui/input';
 import { SignInFormSchema, signInFormSchema } from '@/lib/validators';
 import { Checkbox } from '../ui/checkbox';
-import { signIn } from 'next-auth/react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { notify } from '@/lib/utils';
 
 export default function SignInForm() {
   const router = useRouter();
@@ -34,6 +33,8 @@ export default function SignInForm() {
   });
 
   const onSubmit = async (values: SignInFormSchema) => {
+    console.log("onSubmit CALL");
+    
     setIsSubmitting(true);
 
     try {
