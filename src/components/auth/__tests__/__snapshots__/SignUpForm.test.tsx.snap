@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignUpForm component renders correctly 1`] = `
+<div>
+  <form
+    aria-label="signup form"
+    class="space-y-4 text-left"
+  >
+    <div
+      class="space-y-1"
+    >
+      <label
+        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        for=":r0:-form-item"
+      >
+        Username
+      </label>
+      <input
+        aria-describedby=":r0:-form-item-description"
+        aria-invalid="false"
+        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+        id=":r0:-form-item"
+        name="username"
+        placeholder="your name"
+        value=""
+      />
+    </div>
+    <div
+      class="space-y-1"
+    >
+      <label
+        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        for=":r1:-form-item"
+      >
+        Email
+      </label>
+      <input
+        aria-describedby=":r1:-form-item-description"
+        aria-invalid="false"
+        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+        id=":r1:-form-item"
+        name="email"
+        placeholder="your@email.com"
+        value=""
+      />
+    </div>
+    <div
+      class="space-y-1"
+    >
+      <label
+        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        for=":r2:-form-item"
+      >
+        Password
+      </label>
+      <input
+        aria-describedby=":r2:-form-item-description"
+        aria-invalid="false"
+        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+        id=":r2:-form-item"
+        name="password"
+        placeholder="at least 6 characters"
+        value=""
+      />
+    </div>
+    <div
+      class="space-y-1"
+    >
+      <label
+        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        for=":r3:-form-item"
+      >
+        Confirm Password
+      </label>
+      <input
+        aria-describedby=":r3:-form-item-description"
+        aria-invalid="false"
+        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+        id=":r3:-form-item"
+        name="confirmPassword"
+        placeholder="the same as above"
+        value=""
+      />
+    </div>
+    <button
+      class="inline-flex items-center justify-center text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 w-full text-white bg-rose-400 rounded-lg hover:bg-rose-500 transition-colors"
+    >
+      Get Started
+    </button>
+  </form>
+</div>
+`;

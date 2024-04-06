@@ -42,7 +42,7 @@ export default function SignUpForm() {
       });
       const data = await response.json();
       if (response.status === 201) {
-        notify({ title: data.message, variant: 'error' });
+        notify({ title: data.message, variant: 'success' });
         router.push('/sign-in');
       } else {
         notify({ title: data.message, variant: 'error' });
@@ -59,6 +59,7 @@ export default function SignUpForm() {
       <form
         className="space-y-4 text-left"
         onSubmit={form.handleSubmit(onSubmit)}
+        aria-label='signup form'
       >
         <FormField
           control={form.control}
