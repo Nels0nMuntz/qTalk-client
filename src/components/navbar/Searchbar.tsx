@@ -83,7 +83,7 @@ export default function Searchbar() {
         placeholder="Search communities..."
       />
       {Boolean(value.length) && (
-        <CommandList className="absolute bg-white top-full inset-x-0 shadow rounded-b-md">
+        <CommandList className="absolute bg-white top-full inset-x-0 shadow rounded-b-md" >
           {isFetched && <CommandEmpty>No results found.</CommandEmpty>}
           {Boolean(queryResult?.length) && (
             <CommandGroup heading="Communities">

@@ -8,7 +8,7 @@ interface Props extends AvatarProps {
   user?: Pick<User, 'name' | 'email' | 'image'>;
 }
 
-export default function UserAvatar({ user, ...avatarProps }: Props) {
+export default function UserAvatar({ user, ...avatarProps }: Props) {  
   return (
     <Avatar {...avatarProps}>
       <AvatarImage

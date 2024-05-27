@@ -17,7 +17,7 @@ interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
   user: Pick<User, 'name' | 'image' | 'email'>;
 }
 
-export default function UserAccountNavbar({ user }: UserAccountNavProps) {
+export default function UserAccountNavbar({ user }: UserAccountNavProps) {  
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
