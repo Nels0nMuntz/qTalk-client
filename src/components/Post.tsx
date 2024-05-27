@@ -2,7 +2,7 @@
 
 import { formatTimeToNow } from '@/lib/utils';
 import { ExtendedPost } from '@/types/db';
-import { Post, Vote } from '@prisma/client';
+import type { Post, Vote } from '@prisma/client';
 import { MessageSquare } from 'lucide-react';
 import Link from 'next/link';
 import React, { useRef } from 'react';
