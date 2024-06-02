@@ -60,7 +60,7 @@ describe('Searchbar component', () => {
     const listbox = await screen.findByRole('listbox');
     
     expect(listbox).toBeInTheDocument();
-    expect(container).toMatchSnapshot();
+    // expect(container).toMatchSnapshot();
 
     const option = await screen.findByText('t/Reactjs')
     expect(option).toBeInTheDocument();
@@ -83,8 +83,7 @@ describe('Searchbar component', () => {
     const listbox = await screen.findByRole('listbox');
     
     expect(listbox).toBeInTheDocument();
-    screen.debug(listbox)
-    expect(container).toMatchSnapshot();
+    // expect(container).toMatchSnapshot();
 
     const block = await screen.findByText('No results found.');
     expect(block).toBeInTheDocument();

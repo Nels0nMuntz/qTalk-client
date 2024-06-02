@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { VoteType } from '@prisma/client';
-import { useCustomNotifications } from '@/hooks';
+import { useCustomNotifications, usePostVotes } from '@/hooks';
 import { usePrevious } from '@mantine/hooks';
 import { Button } from '../ui/button';
 import { ArrowBigDown, ArrowBigUp } from 'lucide-react';
@@ -22,68 +22,11 @@ export default function PostVoteClient({
   initialVote,
   initialVoteCount,
 }: Props) {
-  const [votesCount, setVoteCount] = useState(initialVoteCount);
-  const [currentVote, setCurrentVote] = useState(initialVote);
-  const { loginNotification } = useCustomNotifications();
-  const prevVote = usePrevious(currentVote);
-
-  useEffect(() => {
-    setCurrentVote(initialVote);
-  }, [initialVote]);
-
-  const { mutate: vote } = useMutation({
-    mutationFn: async (voteType: VoteType) => {
-      const payload: PostVotePayload = {
-        postId,
-        voteType,
-      };
-      await axios.patch('/api/subtalk/post/vote', payload);
-    },
-    onError: (error, voteType) => {
-      if (voteType === 'UP') {
-        setVoteCount((prev) => prev - 1);
-      } else {
-        setVoteCount((prev) => prev + 1);
-      }
-
-      // reset current vote
-      setCurrentVote(prevVote || null);
-
-      if (error instanceof AxiosError) {
-        if (error.response?.status === 401) {
-          return loginNotification();
-        }
-      }
-
-      return notify({
-        title: 'Something went wrong.',
-        description: 'Your vote was not registered. Please try again.',
-        variant: 'error',
-      });
-    },
-    onMutate: (voteType: VoteType) => {
-      if (voteType === currentVote) {
-        // User is voting the same way again, so remove their vote
-        setCurrentVote(null);
-        if (voteType === 'UP') {
-          setVoteCount((prev) => prev - 1);
-        } else {
-          setVoteCount((prev) => prev + 1);
-        }
-      } else {
-        // User is voting in the opposite direction, so subtract 2
-        setCurrentVote(voteType);
-        if (voteType === 'UP') {
-          setVoteCount((prev) => prev + (currentVote ? 2 : 1));
-        } else {
-          setVoteCount((prev) => prev - (currentVote ? 2 : 1));
-        }
-      }
-    },
+  const { votesCount, currentVote, upvote, downvote } = usePostVotes({
+    postId,
+    initialVote,
+    initialVoteCount,
   });
-
-  const upvote = () => vote('UP');
-  const downvote = () => vote('DOWN');
 
   return (
     <div className="flex flex-col group-[.is-post-page]:flex-row self-start gap-4 sm:gap-0 pr-4 mb:pr-6 sm:w-20 pb-4 sm:pb-0">
