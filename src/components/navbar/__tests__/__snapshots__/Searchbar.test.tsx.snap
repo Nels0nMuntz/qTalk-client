@@ -57,3 +57,216 @@ exports[`Searchbar component does not render listbox until type any value 1`] = 
   </div>
 </div>
 `;
+
+exports[`Searchbar component renders empty listbox if nothing was found 1`] = `
+<div>
+  <div
+    class="flex h-full w-full flex-col bg-popover text-popover-foreground relative rounded-lg border max-w-lg z-50 overflow-visible"
+    cmdk-root=""
+  >
+    <label
+      cmdk-label=""
+      for=":r2:"
+      id=":r1:"
+      style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+    />
+    <div
+      class="flex items-center border-b px-3"
+      cmdk-input-wrapper=""
+    >
+      <svg
+        class="mr-2 h-4 w-4 shrink-0 opacity-50"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="11"
+          cy="11"
+          r="8"
+        />
+        <path
+          d="m21 21-4.3-4.3"
+        />
+      </svg>
+      <input
+        aria-autocomplete="list"
+        aria-controls=":r0:"
+        aria-expanded="true"
+        aria-labelledby=":r1:"
+        autocomplete="off"
+        autocorrect="off"
+        class="flex h-11 w-full rounded-md bg-transparent py-3 text-sm placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 outline-none border-none focus:border-none focus:outline-none ring-0"
+        cmdk-input=""
+        id=":r2:"
+        placeholder="Search communities..."
+        role="combobox"
+        spellcheck="false"
+        type="text"
+        value="some string"
+      />
+    </div>
+    <div
+      aria-label="Suggestions"
+      aria-labelledby=":r2:"
+      class="max-h-[300px] overflow-y-auto overflow-x-hidden absolute bg-white top-full inset-x-0 shadow rounded-b-md"
+      cmdk-list=""
+      id=":r0:"
+      role="listbox"
+    >
+      <div
+        cmdk-list-sizer=""
+      >
+        <div
+          class="py-6 text-center text-sm"
+          cmdk-empty=""
+          role="presentation"
+        >
+          No results found.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Searchbar component renders listbox after a value was provided 1`] = `
+<div>
+  <div
+    class="flex h-full w-full flex-col bg-popover text-popover-foreground relative rounded-lg border max-w-lg z-50 overflow-visible"
+    cmdk-root=""
+  >
+    <label
+      cmdk-label=""
+      for=":r2:"
+      id=":r1:"
+      style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+    />
+    <div
+      class="flex items-center border-b px-3"
+      cmdk-input-wrapper=""
+    >
+      <svg
+        class="mr-2 h-4 w-4 shrink-0 opacity-50"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="11"
+          cy="11"
+          r="8"
+        />
+        <path
+          d="m21 21-4.3-4.3"
+        />
+      </svg>
+      <input
+        aria-autocomplete="list"
+        aria-controls=":r0:"
+        aria-expanded="true"
+        aria-labelledby=":r1:"
+        autocomplete="off"
+        autocorrect="off"
+        class="flex h-11 w-full rounded-md bg-transparent py-3 text-sm placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 outline-none border-none focus:border-none focus:outline-none ring-0"
+        cmdk-input=""
+        id=":r2:"
+        placeholder="Search communities..."
+        role="combobox"
+        spellcheck="false"
+        type="text"
+        value="react"
+      />
+    </div>
+    <div
+      aria-label="Suggestions"
+      aria-labelledby=":r2:"
+      class="max-h-[300px] overflow-y-auto overflow-x-hidden absolute bg-white top-full inset-x-0 shadow rounded-b-md"
+      cmdk-list=""
+      id=":r0:"
+      role="listbox"
+    >
+      <div
+        cmdk-list-sizer=""
+      >
+        <div
+          class="overflow-hidden p-1 text-foreground [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground"
+          cmdk-group=""
+          data-value="communities"
+          role="presentation"
+        >
+          <div
+            aria-hidden="true"
+            cmdk-group-heading=""
+            id=":r4:"
+          >
+            Communities
+          </div>
+          <div
+            aria-labelledby=":r4:"
+            cmdk-group-items=""
+            role="group"
+          >
+            <div
+              aria-selected="true"
+              class="relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+              cmdk-item=""
+              data-selected="true"
+              data-value="reactjs"
+              role="option"
+            >
+              <svg
+                class="w-4 h-4 mr-2"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
+                />
+                <circle
+                  cx="9"
+                  cy="7"
+                  r="4"
+                />
+                <path
+                  d="M22 21v-2a4 4 0 0 0-3-3.87"
+                />
+                <path
+                  d="M16 3.13a4 4 0 0 1 0 7.75"
+                />
+              </svg>
+              <span
+                class="cursor-pointer"
+                role="link"
+                tabindex="0"
+              >
+                t/
+                Reactjs
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

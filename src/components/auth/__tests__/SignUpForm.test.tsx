@@ -78,7 +78,7 @@ describe('SignUpForm component', () => {
     await user.clear(usernameInput);
     await user.type(
       usernameInput,
-      'd7a92f5c4e5d9a3b4f7c8b5d7e2a1f3b7c8e9d1a5b7c8a2d4e5',
+      'more then 50 character more then 50 character more then 50 character',
     );
     expect(queryUsernameHelperText(container)).toHaveTextContent(
       'String must contain at most 50 character(s)',

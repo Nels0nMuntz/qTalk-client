@@ -36,6 +36,7 @@ export default function Searchbar() {
     queryKey: ['search'],
     enabled: false,
   });
+  
 
   useEffect(() => {
     setValue('');
@@ -60,7 +61,6 @@ export default function Searchbar() {
   };
 
   const handleKeyDown = (event: React.KeyboardEvent, url: string) => {
-    console.log(event.code);
     if (event.code === '13') {
       event.preventDefault();
       event.stopPropagation();
